@@ -23,26 +23,36 @@
   </div>
   <div class="ui-g">
     <div class="ui-g-12">
-    <p-table [value]="lancamentos">
+      <p-table [value]="lancamentos">
         <ng-template pTemplate="header">
             <tr>
-                <th>Pessoa</th>
-                <th>Descricao</th>
-                <th class="col-data-header">Vencimento</th>
-                <th class="col-data-header">Pagamento</th>
-                <th class="col-valor-header">Valor</th>
+              <th>Pessoa</th>
+              <th>Descricao</th>
+              <th class="col-data-header">Vencimento</th>
+              <th class="col-data-header">Pagamento</th>
+              <th class="col-valor-header">Valor</th>
+              <th class="col-acoes"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-lancamento>
             <tr>
-                <td>{{lancamento.pessoa}}</td>
-                <td>{{lancamento.descricao}}</td>
-                <td class="col-data-content">{{lancamento.dataVencimento}}</td>
-                <td class="col-data-content">{{lancamento.dataPagamento}}</td>
-                <td class="col-valor-content">{{lancamento.valor}}</td>
+              <td>{{lancamento.pessoa}}</td>
+              <td>{{lancamento.descricao}}</td>
+              <td class="col-data-content">{{lancamento.dataVencimento}}</td>
+              <td class="col-data-content">{{lancamento.dataPagamento}}</td>
+              <td class="col-valor-content">
+                <span [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">{{lancamento.valor}} </span>
+              </td>
+              <td class="col-acoes">
+                <a pButton icon="pi pi-pencil"></a>
+                <button pButton icon="pi pi-trash"></button>
+              </td>
             </tr>
         </ng-template>
-    </p-table>
+      </p-table>
+    </div>
+    <div class="ui-g-12">
+      <a pButton label="Novo Lançamento"></a>
     </div>
   </div>
 </div>
