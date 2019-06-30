@@ -1,15 +1,17 @@
 <div class="container">
-  <form action="">
+  <form #f="ngForm">
     <div class="ui-g" >
       <div class="ui-g-12">
         <h1>Novo lançamento</h1>
       </div>
       <div class="ui-g-12">
-        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+        <p-selectButton [options]="tipos" #tipo name="tipo"
+          ngModel #tipo="ngModel" required></p-selectButton>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy"></p-calendar>
+        <p-calendar dateFormat="dd/mm/yy" name="vencimento"
+          ngModel #vencimento="ngModel" required></p-calendar>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label> {{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
@@ -29,22 +31,24 @@
         <label>Valor</label>
         <input type="text" pInputText placeholder="0,00" currencyMask name="valor"
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          ngModel>
+          ngModel #valor="ngModel">
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>{{categoria.label}}
-        <p-dropdown [options]="categorias" placeholder="Selecione" #categoria></p-dropdown>
+        <p-dropdown [options]="categorias" placeholder="Selecione" name="categoria"
+          ngModel #categoria="ngModel"></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>{{pessoa.label}}
-        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" #pessoa></p-dropdown>
+        <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione" name="pessoa"
+          ngModel #pessoa="ngModel"></p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3"></textarea>
       </div>
       <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
         <button pButton type="button" label="Novo" class="ui-button-warning" ></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
