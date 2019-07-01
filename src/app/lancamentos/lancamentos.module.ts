@@ -31,7 +31,6 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    InputMaskModule,
 
     CurrencyMaskModule
 
