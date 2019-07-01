@@ -22,24 +22,21 @@
         <input type="text" pInputText name="descricao"
           ngModel #descricao="ngModel"
           required minlength="5">
-          <!--
-
-            <app-message [control]="descricao" error="required"
-              text="Informe uma descrição"></app-message>
-            <app-message [control]="descricao" error="minlength"
-              text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
-          -->
+          <app-message [control]="descricao" error="required"
+            text="Informe uma descrição"></app-message>
+          <app-message [control]="descricao" error="minlength"
+            text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
       <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>Valor</label>
         <input type="text" pInputText placeholder="0,00" currencyMask name="valor"
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          ngModel #valor="ngModel">
+          ngModel #valor="ngModel" required>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Categoria</label>{{categoria.label}}
         <p-dropdown [options]="categorias" placeholder="Selecione" name="categoria"
-          ngModel #categoria="ngModel"></p-dropdown>
+          ngModel #categoria="ngModel" required></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Pessoa</label>{{pessoa.label}}

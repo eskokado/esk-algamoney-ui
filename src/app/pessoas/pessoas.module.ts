@@ -7,12 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { DropdownModule } from 'primeng/dropdown';
 
 import { InputMaskModule } from 'primeng/inputmask';
 
+import { SharedModule } from './../shared/shared.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
@@ -28,6 +26,8 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
     TooltipModule,
     InputTextareaModule,
     InputMaskModule,
+
+    SharedModule
 
   ],
   declarations: [
