@@ -19,6 +19,7 @@ import { LancamentoService } from './lancamentos/lancamento.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+
     HttpClientModule,
 
     CoreModule,
