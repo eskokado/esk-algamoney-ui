@@ -28,7 +28,7 @@ import { LancamentoService } from './lancamentos/lancamento.service';
     PessoasModule,
 
   ],
-  providers: [LancamentoService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

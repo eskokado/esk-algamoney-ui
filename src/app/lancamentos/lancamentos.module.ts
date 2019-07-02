@@ -1,3 +1,4 @@
+import { LancamentoService } from './lancamento.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +11,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputMaskModule } from 'primeng/inputmask';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -46,7 +46,8 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
   exports: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
-  ]
+  ],
+  providers: [LancamentoService],
 
 })
 export class LancamentosModule { }
