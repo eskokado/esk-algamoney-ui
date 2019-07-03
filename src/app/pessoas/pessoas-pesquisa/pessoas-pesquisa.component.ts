@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pessoas-pesquisa.component.css']
 })
 export class PessoasPesquisaComponent implements OnInit {
-  nome: string;
+  filtro = new PessoaFiltro();
   pessoas = [];
 
   constructor(
@@ -19,9 +19,9 @@ export class PessoasPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.pessoaService.pesquisar({nome: this.nome})
+    this.pessoaService.pesquisar(this.filtro)
       .then((response) => {
-        this.pessoas = response.content;
+        this.pessoas = response.pessoas;
       });
   }
 
