@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { LancamentoFiltro } from '../lancamento.service';
 
 @Component({
@@ -12,5 +12,6 @@ export class LancamentosGridComponent  {
   @Input() totalRegistros;
   @Input() filtro = new LancamentoFiltro();
 
+  @Output() lancamentosPesquisado = new EventEmitter();
 
 }

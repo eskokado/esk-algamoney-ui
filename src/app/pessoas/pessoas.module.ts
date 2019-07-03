@@ -14,6 +14,7 @@ import { SharedModule } from './../shared/shared.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { PessoaService } from './pessoa.service';
 
 @NgModule({
   imports: [
@@ -38,6 +39,9 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
   exports: [
     PessoaCadastroComponent,
     PessoasPesquisaComponent
+  ],
+  providers: [
+    PessoaService
   ]
 })
 export class PessoasModule { }

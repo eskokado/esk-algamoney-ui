@@ -30,7 +30,8 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <!--
-        <app-lancamentos-grid [lancamentos]="lancamentos" [filtro]="filtro"></app-lancamentos-grid>
+      <app-lancamentos-grid [lancamentos]="lancamentos" [filtro]="filtro"
+        (lancamentosPesquisado)="aoMudarPagina($event)"></app-lancamentos-grid>
       -->
       <p-table [value]="lancamentos" [responsive]="true"
         emptyMessage="Nenhum lançamento encontrado"
