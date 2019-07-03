@@ -57,4 +57,15 @@ export class LancamentoService {
         return resultado;
       });
   }
+
+  excluir(codigo: number): Promise<void> {
+    let headers = new HttpHeaders();
+
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+
+    return this.http.delete(`${this.lancamentoUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(() => null);
+
+  }
 }
