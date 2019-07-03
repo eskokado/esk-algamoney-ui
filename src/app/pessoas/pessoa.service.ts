@@ -1,5 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+export interface PessoaFiltro {
+  nome: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +16,16 @@ export class PessoaService {
     private http: HttpClient
   ) { }
 
-  pesquisar(): Promise<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==' );
+  pesquisar(filtro: PessoaFiltro): Promise<any> {
+    let headers = new HttpHeaders();
+    let params = new HttpParams();
 
-    return this.http.get(`${this.pessoasUrl}`, {headers})
+    headers = headers.set('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==' );
+
+    if (filtro.nome) {
+      params = params.set('nome', filtro.nome);
+    }
+    return this.http.get(`${this.pessoasUrl}`, {headers, params})
       .toPromise();
   }
 

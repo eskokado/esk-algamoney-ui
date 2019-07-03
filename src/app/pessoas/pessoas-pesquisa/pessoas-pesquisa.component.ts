@@ -1,4 +1,4 @@
-import { PessoaService } from './../pessoa.service';
+import { PessoaService, PessoaFiltro } from './../pessoa.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pessoas-pesquisa.component.css']
 })
 export class PessoasPesquisaComponent implements OnInit {
-
+  nome: string;
   pessoas = [];
 
   constructor(
@@ -19,7 +19,7 @@ export class PessoasPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.pessoaService.pesquisar()
+    this.pessoaService.pesquisar({nome: this.nome})
       .then((response) => {
         this.pessoas = response.content;
       });
