@@ -4,12 +4,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastrModule  } from 'ng6-toastr-notifications';
+
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-import { LancamentoService } from './lancamentos/lancamento.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { LancamentoService } from './lancamentos/lancamento.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+
+    ToastrModule.forRoot(),
 
     HttpClientModule,
 

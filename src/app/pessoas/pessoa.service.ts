@@ -31,7 +31,7 @@ export class PessoaService {
       params = params.set('nome', filtro.nome);
     }
     return this.http.get(`${this.pessoasUrl}`, {headers, params})
-      .toPromise()
+      .toPromise<any>()
       .then((response) => {
         const pessoas = response.content;
 
@@ -47,7 +47,7 @@ export class PessoaService {
     const headers = new HttpHeaders().set('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==' );
 
     return this.http.get(`${this.pessoasUrl}`, {headers})
-      .toPromise()
+      .toPromise<any>()
       .then((response) => {
         return response.content;
       });

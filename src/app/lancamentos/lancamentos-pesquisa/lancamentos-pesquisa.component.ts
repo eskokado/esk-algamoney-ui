@@ -1,6 +1,7 @@
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent} from 'primeng/components/common/lazyloadevent';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -16,7 +17,8 @@ export class LancamentosPesquisaComponent implements OnInit {
   @ViewChild('tabela', {static: true}) grid;
 
   constructor(
-    private lancamentoService: LancamentoService
+    private lancamentoService: LancamentoService,
+    private toastr: ToastrManager
   ){}
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.lancamentoService.excluir(lancamento.codigo)
       .then(() => {
         this.grid.reset();
+        this.toastr.successToastr('Lançamento excluido com sucesso!');
       });
   }
 
