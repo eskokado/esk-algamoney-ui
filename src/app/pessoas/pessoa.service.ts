@@ -62,4 +62,14 @@ export class PessoaService {
       .then(() => null);
   }
 
+  mudarStatus(codigo: number, ativo: boolean) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+      .toPromise()
+      .then(() => null);
+  }
+
 }
