@@ -44,11 +44,13 @@ export class PessoaService {
   }
 
   listarTodas(): Promise<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==' );
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
 
     return this.http.get(`${this.pessoasUrl}`, {headers})
       .toPromise<any>()
       .then((response) => {
+        console.log(response.content);
         return response.content;
       });
   }
