@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { ToastrManager } from 'ng6-toastr-notifications';
 
@@ -14,6 +15,11 @@ export class ErrorHandlerService {
 
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
+    } else if (errorResponse instanceof HttpErrorResponse &&
+      errorResponse.status >= 400 &&
+      errorResponse.status <= 499) {
+      console.log('Ocorreu um erro.', errorResponse);
+      msg = errorResponse.error[0].mensagemUsuario;
     } else {
       msg = 'Erro ao processar serviço remoto. Tente novamente.';
       console.log('Ocorreu um erro.', errorResponse)
