@@ -1,7 +1,11 @@
-import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { ConfirmationService } from 'primeng/api';
 import { LazyLoadEvent} from 'primeng/components/common/lazyloadevent';
+
 import { ToastrManager } from 'ng6-toastr-notifications';
+
+import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -18,7 +22,8 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
-    private toastr: ToastrManager
+    private toastr: ToastrManager,
+    private confirmation: ConfirmationService
   ){}
 
   ngOnInit() {
@@ -37,6 +42,15 @@ export class LancamentosPesquisaComponent implements OnInit {
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event.first / event.rows;
     this.pesquisar(pagina);
+  }
+
+  confirmarExclusao(lancamento: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
   }
 
   excluir(lancamento: any) {

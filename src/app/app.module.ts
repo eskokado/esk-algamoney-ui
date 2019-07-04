@@ -6,11 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule  } from 'ng6-toastr-notifications';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import {ConfirmationService} from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 
     ToastrModule.forRoot(),
 
+    ConfirmDialogModule,
     HttpClientModule,
 
     CoreModule,
@@ -31,7 +35,9 @@ import { PessoasModule } from './pessoas/pessoas.module';
     PessoasModule,
 
   ],
-  providers: [],
+  providers: [
+    ConfirmationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
