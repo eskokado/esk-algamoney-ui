@@ -46,7 +46,7 @@ import { RouterModule } from '@angular/router';
     LancamentosGridComponent
   ],
   exports: [],
-  providers: [LancamentoService],
+  providers: [],
 
 })
 export class LancamentosModule { }

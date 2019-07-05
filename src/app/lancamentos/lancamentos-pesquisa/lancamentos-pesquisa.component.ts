@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { ConfirmationService } from 'primeng/api';
 import { LazyLoadEvent} from 'primeng/components/common/lazyloadevent';
@@ -25,11 +26,13 @@ export class LancamentosPesquisaComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private toastr: ToastrManager,
     private confirmation: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private title: Title
   ){}
 
   ngOnInit() {
     //this.pesquisar(); // retirado ao utilizar o lazy do table do PRIMENG
+    this.title.setTitle('Pesquisa de lançamento');
   }
 
   pesquisar(pagina = 0) {

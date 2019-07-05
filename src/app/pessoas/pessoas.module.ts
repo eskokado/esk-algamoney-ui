@@ -39,8 +39,6 @@ import { RouterModule } from '@angular/router';
     PessoasGridComponent
   ],
   exports: [],
-  providers: [
-    PessoaService
-  ]
+  providers: []
 })
 export class PessoasModule { }
