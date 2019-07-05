@@ -25,8 +25,6 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     FormsModule,
 
-    AppRoutingModule,
-
     HttpClientModule,
 
     CoreModule,
@@ -34,6 +32,7 @@ registerLocaleData(localePt);
     LancamentosModule,
     PessoasModule,
 
+    AppRoutingModule,
   ],
   providers: [
   ],
