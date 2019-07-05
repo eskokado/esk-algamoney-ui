@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PesssoaDTO } from '../core/models';
 
 export class PessoaFiltro {
   nome: string;
@@ -72,6 +73,15 @@ export class PessoaService {
     return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
       .toPromise()
       .then(() => null);
+  }
+
+  adicionar(pessoa: PesssoaDTO): Promise<PesssoaDTO> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.post<PesssoaDTO>(this.pessoasUrl, pessoa, { headers })
+      .toPromise();
   }
 
 }
