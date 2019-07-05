@@ -60,15 +60,31 @@ export class LancamentoCadastroComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
+
   salvar(form: FormControl) {
-//    console.log(this.lancamento);
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.adicionar(this.lancamento)
-      .then((response) => {
+      .then(() => {
         this.toastr.successToastr('Lançamento adicionado com sucesso!');
-//        console.log(response);
-//        console.log(moment(response.dataVencimento, 'YYYY-MM-DD').toDate());
         form.reset();
         this.lancamento = new Lancamento();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarLancamento(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento)
+      .then((lancamento) => {
+        this.lancamento = lancamento;
+        this.toastr.successToastr('Lançamento atualizado com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
