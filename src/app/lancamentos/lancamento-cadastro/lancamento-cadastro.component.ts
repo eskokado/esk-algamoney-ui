@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { Lancamento } from './../../core/models';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
+import { LancamentoService } from './../lancamento.service';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Lancamento } from './../../core/models';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -26,6 +28,8 @@ export class LancamentoCadastroComponent implements OnInit {
   constructor(
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
+    private lancamentoService: LancamentoService,
+    private toastr: ToastrManager,
     private errorHandler: ErrorHandlerService
   ) { }
 
@@ -35,8 +39,15 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(form);
-    console.log(this.lancamento);
+//    console.log(this.lancamento);
+    this.lancamentoService.adicionar(this.lancamento)
+      .then((response) => {
+        this.toastr.successToastr('Lançamento adicionado com sucesso!');
+//        console.log(response);
+        form.reset();
+        this.lancamento = new Lancamento();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   carregarCategorias() {

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import * as moment from 'moment';
 
+import { Lancamento } from './../core/models';
+
 export class LancamentoFiltro {
   descricao: string;
   dataVencimentoInicio: Date;
@@ -67,5 +69,17 @@ export class LancamentoService {
       .toPromise()
       .then(() => null);
 
+  }
+
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    let headers = new HttpHeaders();
+
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Content-Type', 'application/json');
+
+//    console.log(lancamento);
+
+    return this.http.post<Lancamento>(this.lancamentoUrl, lancamento, { headers })
+      .toPromise();
   }
 }
