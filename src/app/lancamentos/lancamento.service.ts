@@ -82,4 +82,48 @@ export class LancamentoService {
     return this.http.post<Lancamento>(this.lancamentoUrl, lancamento, { headers })
       .toPromise();
   }
+
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    let headers = new HttpHeaders();
+
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento, { headers })
+      .toPromise<any>()
+      .then(response => {
+        const lancamentoAlterado = response;
+
+        this.converterStringsParaDatas([lancamentoAlterado]);
+
+        return lancamentoAlterado;
+      });
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Lancamento> {
+    let headers = new HttpHeaders();
+
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+
+    return this.http.get(`${this.lancamentoUrl}/${codigo}`, { headers })
+      .toPromise<any>()
+      .then(response => {
+        const lancamento = response;
+
+        this.converterStringsParaDatas([lancamento]);
+
+        return lancamento;
+      });
+  }
+
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
+    for (const lancamento of lancamentos) {
+      lancamento.dataVencimento = moment(lancamento.dataVencimento, 'YYYY-MM-DD').toDate();
+
+      if (lancamento.dataPagamento) {
+        lancamento.dataPagamento = moment(lancamento.dataPagamento, 'YYYY-MM-DD').toDate();
+      }
+    }
+  }
+
 }

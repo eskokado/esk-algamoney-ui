@@ -9,6 +9,7 @@ import { PessoaService } from './../../pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { Lancamento } from './../../core/models';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -48,6 +49,7 @@ export class LancamentoCadastroComponent implements OnInit {
       .then((response) => {
         this.toastr.successToastr('Lançamento adicionado com sucesso!');
 //        console.log(response);
+//        console.log(moment(response.dataVencimento, 'YYYY-MM-DD').toDate());
         form.reset();
         this.lancamento = new Lancamento();
       })
