@@ -38,10 +38,7 @@ import { RouterModule } from '@angular/router';
     PessoasPesquisaComponent,
     PessoasGridComponent
   ],
-  exports: [
-    PessoaCadastroComponent,
-    PessoasPesquisaComponent
-  ],
+  exports: [],
   providers: [
     PessoaService
   ]

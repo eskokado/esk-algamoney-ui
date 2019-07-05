@@ -8,6 +8,7 @@ import {ConfirmationService} from 'primeng/api';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ErrorHandlerService } from './error-handler.service';
     ConfirmDialogModule,
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PaginaNaoEncontradaComponent
   ],
   exports: [
     NavbarComponent,
