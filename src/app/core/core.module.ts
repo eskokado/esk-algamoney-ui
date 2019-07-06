@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { ToastrModule  } from 'ng6-toastr-notifications';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
@@ -41,6 +42,7 @@ import { AuthService } from './../seguranca/auth.service';
 
     Title,
 
+    JwtHelperService,
     ErrorHandlerService,
     ConfirmationService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
