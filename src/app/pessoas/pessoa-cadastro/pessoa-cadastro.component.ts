@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { ToastrManager } from 'ng6-toastr-notifications';
 
@@ -22,10 +23,13 @@ export class PessoaCadastroComponent implements OnInit {
     private toastr: ToastrManager,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Novo lançamento');
+
     const codigoPessoa = this.route.snapshot.params.codigo;
 
     if (codigoPessoa) {
@@ -41,6 +45,7 @@ export class PessoaCadastroComponent implements OnInit {
     this.pessoaService.buscarPorCodigo(codigo)
       .then(pessoa => {
         this.pessoa = pessoa;
+        this.atualizarTituloEdicao();
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
@@ -67,6 +72,8 @@ export class PessoaCadastroComponent implements OnInit {
   atualizarPessoa(form: FormControl) {
     this.pessoaService.atualizar(this.pessoa)
       .then((pessoa) => {
+        this.pessoa = pessoa;
+        this.atualizarTituloEdicao();
         this.toastr.successToastr('Pessoa atualizada com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
@@ -82,4 +89,7 @@ export class PessoaCadastroComponent implements OnInit {
     this.router.navigate(['/pessoas/nova']);
   }
 
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Edição de pessoa: ${this.pessoa.nome}`);
+  }
 }
