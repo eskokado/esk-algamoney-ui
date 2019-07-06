@@ -45,11 +45,27 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizandoPessoa(form);
+    } else {
+      this.adicionandoPessoa(form);
+    }
+  }
+
+  adicionandoPessoa(form: FormControl) {
     this.pessoaService.adicionar(this.pessoa)
       .then(() => {
         this.toastr.successToastr('Pessoa adicionada com sucesso!');
         form.reset();
         this.pessoa = new Pessoa();
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizandoPessoa(form: FormControl) {
+    this.pessoaService.atualizar(this.pessoa)
+      .then((pessoa) => {
+        this.toastr.successToastr('Pessoa atualizada com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
