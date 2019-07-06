@@ -73,7 +73,6 @@ export class LancamentoService {
 
   adicionar(lancamento: Lancamento): Promise<Lancamento> {
     let headers = new HttpHeaders();
-
     headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Content-Type', 'application/json');
 
@@ -85,12 +84,11 @@ export class LancamentoService {
 
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     let headers = new HttpHeaders();
-
     headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento, { headers })
-      .toPromise<any>()
+    return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento, { headers })
+      .toPromise()
       .then(response => {
         const lancamentoAlterado = response;
 
@@ -102,11 +100,10 @@ export class LancamentoService {
 
   buscarPorCodigo(codigo: number): Promise<Lancamento> {
     let headers = new HttpHeaders();
-
     headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
 
-    return this.http.get(`${this.lancamentoUrl}/${codigo}`, { headers })
-      .toPromise<any>()
+    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${codigo}`, { headers })
+      .toPromise()
       .then(response => {
         const lancamento = response;
 

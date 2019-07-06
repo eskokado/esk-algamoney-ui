@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PesssoaDTO } from '../core/models';
+import { Pessoa } from '../core/models';
 
 export class PessoaFiltro {
   nome: string;
@@ -75,12 +75,29 @@ export class PessoaService {
       .then(() => null);
   }
 
-  adicionar(pessoa: PesssoaDTO): Promise<PesssoaDTO> {
+  adicionar(pessoa: Pessoa): Promise<Pessoa> {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.post<PesssoaDTO>(this.pessoasUrl, pessoa, { headers })
+    return this.http.post<Pessoa>(this.pessoasUrl, pessoa, { headers })
+      .toPromise();
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${codigo}`, pessoa, { headers })
+      .toPromise();
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Pessoa> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers })
       .toPromise();
   }
 

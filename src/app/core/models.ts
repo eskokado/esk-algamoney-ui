@@ -8,14 +8,11 @@ export class Endereco {
   estado: string;
 }
 
-export class PesssoaDTO {
+export class Pessoa {
+  codigo: number;
   nome: string;
   ativo = true;
   endereco = new Endereco();
-}
-
-export class Pesssoa {
-  codigo: number;
 }
 
 export class Categoria {
