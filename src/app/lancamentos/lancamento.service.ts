@@ -28,7 +28,8 @@ export class LancamentoService {
     let params = new HttpParams();
     let headers = new HttpHeaders();
 
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
@@ -63,7 +64,8 @@ export class LancamentoService {
   excluir(codigo: number): Promise<void> {
     let headers = new HttpHeaders();
 
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     return this.http.delete(`${this.lancamentoUrl}/${codigo}`, { headers })
       .toPromise()
@@ -73,7 +75,8 @@ export class LancamentoService {
 
   adicionar(lancamento: Lancamento): Promise<Lancamento> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
 
 //    console.log(lancamento);
@@ -84,7 +87,8 @@ export class LancamentoService {
 
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento, { headers })
@@ -100,7 +104,8 @@ export class LancamentoService {
 
   buscarPorCodigo(codigo: number): Promise<Lancamento> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     return this.http.get<Lancamento>(`${this.lancamentoUrl}/${codigo}`, { headers })
       .toPromise()

@@ -23,7 +23,8 @@ export class PessoaService {
     let headers = new HttpHeaders();
     let params = new HttpParams();
 
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
@@ -46,7 +47,8 @@ export class PessoaService {
 
   listarTodas(): Promise<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     return this.http.get(`${this.pessoasUrl}`, {headers})
       .toPromise<any>()
@@ -58,7 +60,8 @@ export class PessoaService {
 
   excluir(codigo: number) {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
       .toPromise()
@@ -67,7 +70,8 @@ export class PessoaService {
 
   mudarStatus(codigo: number, ativo: boolean) {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
@@ -77,7 +81,8 @@ export class PessoaService {
 
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.post<Pessoa>(this.pessoasUrl, pessoa, { headers })
@@ -86,7 +91,8 @@ export class PessoaService {
 
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers })
@@ -95,7 +101,8 @@ export class PessoaService {
 
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers })
       .toPromise();

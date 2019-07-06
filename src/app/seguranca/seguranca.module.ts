@@ -16,8 +16,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
     InputTextModule,
     ButtonModule,
 
-    SegurancaRoutingModule
+    SegurancaRoutingModule,
+
   ],
   declarations: [LoginFormComponent],
+  providers: []
 })
 export class SegurancaModule { }

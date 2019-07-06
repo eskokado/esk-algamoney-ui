@@ -15,7 +15,8 @@ export class CategoriaService {
 
   listarTodas(): Promise<any> {
     let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+//    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
+    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     return this.http.get(`${this.catetoriasUrl}`, { headers })
       .toPromise<any>()
       .then((response) => {

@@ -17,6 +17,12 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(localePt);
 
+export function tokenGetter() {
+  console.log('Executado a função tokenGetter');
+  return localStorage.getItem('token');
+}
+
+
 @NgModule({
   declarations: [
     AppComponent,
