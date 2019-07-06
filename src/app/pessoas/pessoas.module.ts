@@ -14,8 +14,8 @@ import { SharedModule } from './../shared/shared.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
-import { PessoaService } from './pessoa.service';
 import { RouterModule } from '@angular/router';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 @NgModule({
   imports: [
@@ -30,7 +30,9 @@ import { RouterModule } from '@angular/router';
     InputTextareaModule,
     InputMaskModule,
 
-    SharedModule
+    SharedModule,
+
+    PessoasRoutingModule
 
   ],
   declarations: [
