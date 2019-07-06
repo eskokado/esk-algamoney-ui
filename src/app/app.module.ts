@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(localePt);
 
@@ -31,6 +32,7 @@ registerLocaleData(localePt);
 
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
 
     AppRoutingModule,
   ],
