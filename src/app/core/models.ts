@@ -27,6 +27,6 @@ export class Lancamento {
   dataPagamento: Date;
   valor: number;
   observacao: string;
-  pessoa = new Pesssoa();
+  pessoa = new Pessoa();
   categoria = new Categoria();
 }

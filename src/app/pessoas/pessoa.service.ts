@@ -89,7 +89,7 @@ export class PessoaService {
     headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.put<Pessoa>(`${this.pessoasUrl}/${codigo}`, pessoa, { headers })
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers })
       .toPromise();
   }
 

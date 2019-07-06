@@ -6,7 +6,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService } from './../pessoa.service';
-import { PesssoaDTO } from './../../core/models';
+import { Pessoa } from './../../core/models';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -15,7 +15,7 @@ import { PesssoaDTO } from './../../core/models';
 })
 export class PessoaCadastroComponent implements OnInit {
 
-  pessoa = new PesssoaDTO();
+  pessoa = new Pessoa();
 
   constructor(
     private pessoaService: PessoaService,
@@ -25,8 +25,23 @@ export class PessoaCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params.codigo);
-    console.log(this.pessoa);
+    const codigoPessoa = this.route.snapshot.params.codigo;
+
+    if (codigoPessoa) {
+      this.carregarPessoa(codigoPessoa);
+    }
+  }
+
+  get editando() {
+    return Boolean(this.pessoa.codigo);
+  }
+
+  carregarPessoa(codigo: number) {
+    this.pessoaService.buscarPorCodigo(codigo)
+      .then(pessoa => {
+        this.pessoa = pessoa;
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: FormControl) {
@@ -34,7 +49,7 @@ export class PessoaCadastroComponent implements OnInit {
       .then(() => {
         this.toastr.successToastr('Pessoa adicionada com sucesso!');
         form.reset();
-        this.pessoa = new PesssoaDTO();
+        this.pessoa = new Pessoa();
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
