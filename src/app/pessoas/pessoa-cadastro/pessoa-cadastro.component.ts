@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrManager } from 'ng6-toastr-notifications';
 
@@ -21,7 +21,8 @@ export class PessoaCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private toastr: ToastrManager,
     private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,28 +47,39 @@ export class PessoaCadastroComponent implements OnInit {
 
   salvar(form: FormControl) {
     if (this.editando) {
-      this.atualizandoPessoa(form);
+      this.atualizarPessoa(form);
     } else {
-      this.adicionandoPessoa(form);
+      this.adicionarPessoa(form);
     }
   }
 
-  adicionandoPessoa(form: FormControl) {
+  adicionarPessoa(form: FormControl) {
     this.pessoaService.adicionar(this.pessoa)
-      .then(() => {
+      .then((pessoa) => {
         this.toastr.successToastr('Pessoa adicionada com sucesso!');
-        form.reset();
-        this.pessoa = new Pessoa();
+        //form.reset();
+        //this.pessoa = new Pessoa();
+        this.router.navigate(['/pessoas', pessoa.codigo]);
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  atualizandoPessoa(form: FormControl) {
+  atualizarPessoa(form: FormControl) {
     this.pessoaService.atualizar(this.pessoa)
       .then((pessoa) => {
         this.toastr.successToastr('Pessoa atualizada com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  novo(form: FormControl) {
+    form.reset();
+
+    setTimeout(() => {
+      this.pessoa = new Pessoa();
+    }, 1);
+
+    this.router.navigate(['/pessoas/nova']);
   }
 
 }
