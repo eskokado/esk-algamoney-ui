@@ -69,6 +69,15 @@ export class AuthService {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
   }
 
+  temQualquerPermissao(roles) {
+    for (const role of roles) {
+      if (this.temPermissao(role)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private armazenarToken(token: string) {
     const jwtHelper = new JwtHelperService();
     this.jwtPayload = jwtHelper.decodeToken(token);
