@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Pessoa } from '../core/models';
+import { AuthService } from './../seguranca/auth.service';
 
 export class PessoaFiltro {
   nome: string;
@@ -16,13 +18,16 @@ export class PessoaService {
   pessoasUrl = 'http://localhost:8080/pessoas';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private auth: AuthService
   ) { }
 
   pesquisar(filtro: PessoaFiltro): Promise<any> {
     let headers = new HttpHeaders();
     let params = new HttpParams();
-
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
@@ -47,6 +52,9 @@ export class PessoaService {
 
   listarTodas(): Promise<any> {
     let headers = new HttpHeaders();
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
@@ -60,6 +68,9 @@ export class PessoaService {
 
   excluir(codigo: number) {
     let headers = new HttpHeaders();
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
@@ -70,6 +81,9 @@ export class PessoaService {
 
   mudarStatus(codigo: number, ativo: boolean) {
     let headers = new HttpHeaders();
+    if (this.auth.isAccessTokenInvalido()) {
+      this.auth.obterNovoAccessToken();
+    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
@@ -81,6 +95,9 @@ export class PessoaService {
 
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
     let headers = new HttpHeaders();
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
@@ -91,6 +108,9 @@ export class PessoaService {
 
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
     let headers = new HttpHeaders();
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
     headers = headers.append('Content-Type', 'application/json');
@@ -101,6 +121,9 @@ export class PessoaService {
 
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
     let headers = new HttpHeaders();
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
     headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 

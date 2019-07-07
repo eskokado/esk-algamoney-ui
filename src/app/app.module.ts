@@ -1,8 +1,9 @@
+import { AuthInterceptService } from './seguranca/auth-intercept.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
@@ -43,6 +44,10 @@ export function tokenGetter() {
     AppRoutingModule,
   ],
   providers: [
+    {  provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptService, // <- Nome da classe que você criou.
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
