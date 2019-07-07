@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
+import { LogoutService } from './logout.service';
 import { AuthGuard } from './auth.guard';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -22,7 +23,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
   ],
   declarations: [LoginFormComponent],
   providers: [
-    AuthGuard
+    AuthGuard,
+    LogoutService
   ]
 })
 export class SegurancaModule { }
