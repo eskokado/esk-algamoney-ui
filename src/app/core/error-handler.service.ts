@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse,  } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { ToastrManager } from 'ng6-toastr-notifications';
 
@@ -8,13 +9,21 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class ErrorHandlerService {
 
-  constructor(private toastr: ToastrManager) { }
+  constructor(
+    private toastr: ToastrManager,
+    private router: Router
+  ) { }
 
   handle(errorResponse: any) {
     let msg: string;
 
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
+    } else if (errorResponse instanceof HttpErrorResponse &&
+      errorResponse.status === 401 &&
+      errorResponse.error.error === 'invalid_token') {
+        msg = 'Sua Sessão expirou';
+        this.router.navigate(['/login']);
     } else if (errorResponse instanceof HttpErrorResponse &&
       errorResponse.status >= 400 &&
       errorResponse.status <= 499) {
@@ -24,6 +33,7 @@ export class ErrorHandlerService {
         if (errorResponse.status === 403) {
           msg = 'Você não tem permissão para executar esta ação';
         }
+        console.log(msg, errorResponse);
 
         try {
           errors = errorResponse;
