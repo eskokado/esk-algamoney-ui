@@ -65,7 +65,7 @@ export class LancamentoService {
       });
   }
 
-  excluir(codigo: number): Promise<void> {
+  excluir(codigo: number): Promise<any> {
     let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();

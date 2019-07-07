@@ -1,5 +1,6 @@
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
@@ -19,14 +20,15 @@ export class AuthInterceptService implements HttpInterceptor {
         if (error.status === 401 && error.error.error_description.includes('Access token expired')) {
           console.log('Renovar token');
           return this.authService.refreshToken().pipe(
-            mergeMap((newToken: any) => {
+            mergeMap((newToken: string) => {
               req = req.clone({ setHeaders: { Authorization: `Bearer ${newToken}`}});
               return next.handle(req);
             })
           );
         }
+
+        return throwError(error);
       })
     );
-
   }
 }

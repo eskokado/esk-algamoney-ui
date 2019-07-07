@@ -61,7 +61,7 @@ export class PessoaService {
     return this.http.get(`${this.pessoasUrl}`, {headers})
       .toPromise<any>()
       .then((response) => {
-        console.log(response.content);
+ //       console.log(response.content);
         return response.content;
       });
   }

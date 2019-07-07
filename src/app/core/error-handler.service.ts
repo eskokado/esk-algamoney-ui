@@ -18,14 +18,17 @@ export class ErrorHandlerService {
     } else if (errorResponse instanceof HttpErrorResponse &&
       errorResponse.status >= 400 &&
       errorResponse.status <= 499) {
-      if (errorResponse.error.error_description) {
-        msg = errorResponse.error.error_description;
-      } else if (errorResponse.error[0].mensagemUsuario) {
-        msg = errorResponse.error[0].mensagemUsuario;
-      } else {
-        msg = 'Erro ao processar serviço remoto. Tente novamente.';
-      }
-      console.log('Ocorreu um erro.', errorResponse);
+        msg = 'Ocorreu um erro ao processar a sua solicitação';
+
+        console.error('Ocorreu um erro', errorResponse);
+//      if (errorResponse.error.error_description) {
+//        msg = errorResponse.error.error_description;
+//      } else if (errorResponse.error[0].mensagemUsuario) {
+//        msg = errorResponse.error[0].mensagemUsuario;
+//      } else {
+//        msg = 'Erro ao processar serviço remoto. Tente novamente.';
+//      }
+//      console.log('Ocorreu um erro.', errorResponse);
     } else {
       msg = 'Erro ao processar serviço remoto. Tente novamente.';
       console.log('Ocorreu um erro.', errorResponse)
