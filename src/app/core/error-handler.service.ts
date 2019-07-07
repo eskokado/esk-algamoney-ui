@@ -20,8 +20,8 @@ export class ErrorHandlerService {
       errorResponse.status <= 499) {
       if (errorResponse.error.error_description) {
         msg = errorResponse.error.error_description;
-//      } else if (errorResponse.error[0].mensagemUsuario) {
-//        msg = errorResponse.error[0].mensagemUsuario;
+      } else if (errorResponse.error[0].mensagemUsuario) {
+        msg = errorResponse.error[0].mensagemUsuario;
       } else {
         msg = 'Erro ao processar serviço remoto. Tente novamente.';
       }
