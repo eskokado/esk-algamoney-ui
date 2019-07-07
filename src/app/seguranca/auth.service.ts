@@ -54,7 +54,6 @@ export class AuthService {
         return Promise.resolve(null);
       })
       .catch(response => {
-        console.log('Erro ao renovar token ', response);
         return Promise.resolve(null);
       });
   }
