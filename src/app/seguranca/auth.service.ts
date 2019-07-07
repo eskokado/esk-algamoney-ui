@@ -22,7 +22,7 @@ export class AuthService {
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const body = `client=angular&username=${usuario}&password=${senha}&grant_type=password`;
-    return this.http.post<any>(this.oauthTokenUrl, body, { headers})
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
       .toPromise()
       .then(response => {
         this.armazenarToken(response.access_token);
@@ -34,6 +34,26 @@ export class AuthService {
           }
         }
         return Promise.reject(response);
+      });
+  }
+
+  obterNovoAccessToken(): Promise<void> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa('angular:@ngul@r0'));
+    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const body = 'grant_type=refresh_token';
+
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
+      .toPromise()
+      .then(response => {
+        this.armazenarToken(response.access_token);
+        console.log('Novo access token criado!');
+        return Promise.resolve(null);
+      })
+      .catch(response => {
+        console.log('Erro ao renovar token ', response);
+        return Promise.resolve(null);
       });
   }
 
