@@ -6,6 +6,7 @@ import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 
 import { ToastrManager } from 'ng6-toastr-notifications';
 
+import { AuthService } from './../../seguranca/auth.service';
 import { PessoaService, PessoaFiltro } from './../pessoa.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
@@ -26,7 +27,8 @@ export class PessoasPesquisaComponent implements OnInit {
     private toastr: ToastrManager,
     private confirmation: ConfirmationService,
     private errorHandler: ErrorHandlerService,
-    private title: Title
+    private title: Title,
+    private auth: AuthService
   ){}
 
   ngOnInit() {

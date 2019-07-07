@@ -64,14 +64,16 @@
                 [routerLink]="['/lancamentos', lancamento.codigo]"></a>
               <button pButton icon="pi pi-trash"
                 pTooltip="Remover" tooltipPosition="top"
-                (click)="confirmarExclusao(lancamento)"></button>
+                (click)="confirmarExclusao(lancamento)"
+                [disabled]="!auth.temPermissao('ROLE_REMOVER_LANCAMENTO')"></button>
             </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
     <div class="ui-g-12">
-      <a pButton label="Novo Lançamento" routerLink="/lancamentos/novo"></a>
+      <a pButton label="Novo Lançamento" routerLink="/lancamentos/novo"
+        *ngIf="auth.temPermissao('ROLE_REMOVER_LANCAMENTO')"></a>
     </div>
   </div>
 </div>

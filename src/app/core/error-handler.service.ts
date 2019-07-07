@@ -18,9 +18,20 @@ export class ErrorHandlerService {
     } else if (errorResponse instanceof HttpErrorResponse &&
       errorResponse.status >= 400 &&
       errorResponse.status <= 499) {
+        let errors;
         msg = 'Ocorreu um erro ao processar a sua solicitação';
 
-        console.error('Ocorreu um erro', errorResponse);
+        if (errorResponse.status === 403) {
+          msg = 'Você não tem permissão para executar esta ação';
+        }
+
+        try {
+          errors = errorResponse;
+
+          msg = errors[0].mensagemUsuario;
+        } catch (e) { }
+
+//        console.error('Ocorreu um erro', errorResponse);
 //      if (errorResponse.error.error_description) {
 //        msg = errorResponse.error.error_description;
 //      } else if (errorResponse.error[0].mensagemUsuario) {
@@ -31,7 +42,7 @@ export class ErrorHandlerService {
 //      console.log('Ocorreu um erro.', errorResponse);
     } else {
       msg = 'Erro ao processar serviço remoto. Tente novamente.';
-      console.log('Ocorreu um erro.', errorResponse)
+//      console.log('Ocorreu um erro.', errorResponse)
     }
 
     this.toastr.errorToastr(msg);
