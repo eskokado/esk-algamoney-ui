@@ -28,12 +28,12 @@ export class LancamentoService {
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
     let params = new HttpParams();
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
@@ -52,7 +52,8 @@ export class LancamentoService {
                           moment(filtro.dataVencimentoFim).format('YYYY-MM-DD') );
     }
 
-    return this.http.get(`${this.lancamentoUrl}?resumo`, { headers, params })
+//    return this.http.get(`${this.lancamentoUrl}?resumo`, { headers, params })
+    return this.http.get(`${this.lancamentoUrl}?resumo`, { params })
       .toPromise<any>()
       .then(response => {
         const lancamentos = response.content;
@@ -66,44 +67,47 @@ export class LancamentoService {
   }
 
   excluir(codigo: number): Promise<any> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
-    return this.http.delete(`${this.lancamentoUrl}/${codigo}`, { headers })
+//    return this.http.delete(`${this.lancamentoUrl}/${codigo}`, { headers })
+    return this.http.delete(`${this.lancamentoUrl}/${codigo}`)
       .toPromise()
       .then(() => null);
 
   }
 
   adicionar(lancamento: Lancamento): Promise<Lancamento> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
-    headers = headers.append('Content-Type', 'application/json');
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Content-Type', 'application/json');
 
 //    console.log(lancamento);
 
-    return this.http.post<Lancamento>(this.lancamentoUrl, lancamento, { headers })
+//    return this.http.post<Lancamento>(this.lancamentoUrl, lancamento, { headers })
+    return this.http.post<Lancamento>(this.lancamentoUrl, lancamento)
       .toPromise();
   }
 
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
-    headers = headers.append('Content-Type', 'application/json');
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento, { headers })
+//    return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento, { headers })
+    return this.http.put<Lancamento>(`${this.lancamentoUrl}/${lancamento.codigo}`, lancamento)
       .toPromise()
       .then(response => {
         const lancamentoAlterado = response;
@@ -115,14 +119,15 @@ export class LancamentoService {
   }
 
   buscarPorCodigo(codigo: number): Promise<Lancamento> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
-    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${codigo}`, { headers })
+//    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${codigo}`, { headers })
+    return this.http.get<Lancamento>(`${this.lancamentoUrl}/${codigo}`)
       .toPromise()
       .then(response => {
         const lancamento = response;

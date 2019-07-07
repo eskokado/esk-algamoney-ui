@@ -15,6 +15,14 @@ export class AuthInterceptService implements HttpInterceptor {
     if (req.url.includes('/oauth/token')) {
       return next.handle(req);
     }
+    //Get Auth Token from Service which we want to pass thr service call
+    const authToken: any = `Bearer ${localStorage.getItem('token')}`;
+    // Clone the service request and alter original headers with auth token.
+    req = req.clone({
+      headers: req.headers.set('Content-Type', 'application/json').set('Authorization', authToken)
+    });
+//    req = req.clone({ setHeaders: { Authorization: authToken, 'Content-Type': 'application/json'} });
+
     return next.handle(req).pipe(
       catchError(error => {
         if (error.status === 401 && error.error.error_description.includes('Access token expired')) {

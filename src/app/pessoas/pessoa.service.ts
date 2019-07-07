@@ -23,13 +23,13 @@ export class PessoaService {
   ) { }
 
   pesquisar(filtro: PessoaFiltro): Promise<any> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
     let params = new HttpParams();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
@@ -37,7 +37,8 @@ export class PessoaService {
     if (filtro.nome) {
       params = params.set('nome', filtro.nome);
     }
-    return this.http.get(`${this.pessoasUrl}`, {headers, params})
+//    return this.http.get(`${this.pessoasUrl}`, {headers, params})
+    return this.http.get(`${this.pessoasUrl}`, {params})
       .toPromise<any>()
       .then((response) => {
         const pessoas = response.content;
@@ -51,14 +52,15 @@ export class PessoaService {
   }
 
   listarTodas(): Promise<any> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.set('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
-    return this.http.get(`${this.pessoasUrl}`, {headers})
+//    return this.http.get(`${this.pessoasUrl}`, {headers})
+    return this.http.get(`${this.pessoasUrl}`)
       .toPromise<any>()
       .then((response) => {
  //       console.log(response.content);
@@ -67,67 +69,72 @@ export class PessoaService {
   }
 
   excluir(codigo: number) {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin') );
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
-    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+//    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`)
       .toPromise()
       .then(() => null);
   }
 
   mudarStatus(codigo: number, ativo: boolean) {
-    let headers = new HttpHeaders();
-    if (this.auth.isAccessTokenInvalido()) {
-      this.auth.obterNovoAccessToken();
-    }
+//    let headers = new HttpHeaders();
+//    if (this.auth.isAccessTokenInvalido()) {
+//      this.auth.obterNovoAccessToken();
+//    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
-    headers = headers.append('Content-Type', 'application/json');
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+//    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo)
       .toPromise()
       .then(() => null);
   }
 
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
-    headers = headers.append('Content-Type', 'application/json');
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.post<Pessoa>(this.pessoasUrl, pessoa, { headers })
+//    return this.http.post<Pessoa>(this.pessoasUrl, pessoa, { headers })
+    return this.http.post<Pessoa>(this.pessoasUrl, pessoa)
       .toPromise();
   }
 
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
-    headers = headers.append('Content-Type', 'application/json');
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Content-Type', 'application/json');
 
-    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers })
+//    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa, { headers })
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa)
       .toPromise();
   }
 
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
-    let headers = new HttpHeaders();
+//    let headers = new HttpHeaders();
 //    if (this.auth.isAccessTokenInvalido()) {
 //      this.auth.obterNovoAccessToken();
 //    }
 //    headers = headers.append('Authorization', 'Basic ' + btoa('admin@algamoney.com' + ':' + 'admin'));
-    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
+//    headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') );
 
-    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers })
+//    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`, { headers })
+    return this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`)
       .toPromise();
   }
 
