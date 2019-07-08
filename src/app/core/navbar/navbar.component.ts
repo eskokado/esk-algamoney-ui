@@ -12,12 +12,16 @@ import { ErrorHandlerService } from '../error-handler.service';
 })
 export class NavbarComponent implements OnInit {
 
+  exibindoMenu: boolean;
+
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private logoutService: LogoutService,
     private errorHandler: ErrorHandlerService,
     private router: Router
-  ) { }
+  ) {
+    this.exibindoMenu = false;
+  }
 
   ngOnInit() {
   }

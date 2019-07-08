@@ -29,7 +29,7 @@ export class LancamentosPesquisaComponent implements OnInit {
     private confirmation: ConfirmationService,
     private errorHandler: ErrorHandlerService,
     private title: Title,
-    private auth: AuthService
+    public auth: AuthService
   ){}
 
   ngOnInit() {
