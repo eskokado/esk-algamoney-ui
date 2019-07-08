@@ -5,6 +5,7 @@ import * as moment from 'moment';
 
 import { AuthService } from './../seguranca/auth.service';
 import { Lancamento } from './../core/models';
+import { environment } from 'src/environments/environment';
 
 export class LancamentoFiltro {
   descricao: string;
@@ -19,12 +20,14 @@ export class LancamentoFiltro {
 })
 export class LancamentoService {
 
-  lancamentoUrl = 'http://localhost:8080/lancamentos';
+  lancamentoUrl: string;
 
   constructor(
     private http: HttpClient,
     private auth: AuthService
-  ) {}
+  ) {
+    this.lancamentoUrl = `${environment.apiUrl}/lancamentos`;
+  }
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
     let params = new HttpParams();
