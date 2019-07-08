@@ -6,5 +6,4 @@ app.use(express.static(__dirname + '/dist/esk-algamoney-ui'));
 app.get('/*', function(req, res) {
   res.sendFile(__dirname + '/dist/esk-algamoney-ui/index.html');
 });
-
 app.listen(process.env.PORT || 4200);
