@@ -5,8 +5,8 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 import { NaoAutorizadoComponent } from './core/nao-autorizado.component';
 
 const routes: Routes = [
-  { path: 'lancamentos', loadChildren: 'app/lancamentos/lancamentos.module#LancamentosModule' },
-  { path: 'pessoas', loadChildren: 'app/pessoas/pessoas.module#PessoasModule' },
+  { path: 'lancamentos', loadChildren: './lancamentos/lancamentos.module#LancamentosModule' },
+  { path: 'pessoas', loadChildren: './pessoas/pessoas.module#PessoasModule' },
 
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },
