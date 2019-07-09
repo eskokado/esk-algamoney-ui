@@ -12,8 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptService } from './seguranca/auth-intercept.service';
 
-import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { PessoasModule } from './pessoas/pessoas.module';
+//import { LancamentosModule } from './lancamentos/lancamentos.module';
+//import { PessoasModule } from './pessoas/pessoas.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(localePt);
@@ -37,8 +37,8 @@ export function tokenGetter() {
 
     CoreModule,
 
-    LancamentosModule,
-    PessoasModule,
+//    LancamentosModule,
+//    PessoasModule,
     SegurancaModule,
 
     AppRoutingModule,
