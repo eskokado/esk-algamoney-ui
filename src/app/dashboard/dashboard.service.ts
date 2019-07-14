@@ -21,13 +21,13 @@ export class DashboardService {
    }
 
    lancamentosPorCategoria(): Promise<Array<any>> {
-     return this.http.get(`${this.lancamentosUrl}/estatisticas/por-categoria`)
+     return this.http.get(`${this.lancamentosUrl}/estatistica/por-categoria`)
       .toPromise<any>()
       .catch(erro => this.errorHandler.handle(erro));
    }
 
    lancamentoPorDia(): Promise<Array<any>> {
-     return this.http.get(`${this.lancamentosUrl}/estatisticas/por-dia`)
+     return this.http.get(`${this.lancamentosUrl}/estatistica/por-dia`)
       .toPromise<any>()
       .then((response) => {
         const dados = response;
