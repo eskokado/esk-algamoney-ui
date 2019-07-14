@@ -12,10 +12,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
+import { DashboardService } from './../dashboard/dashboard.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { AuthService } from './../seguranca/auth.service';
+
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 @NgModule({
@@ -41,6 +43,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
     PessoaService,
     CategoriaService,
     AuthService,
+    DashboardService,
 
     Title,
 
