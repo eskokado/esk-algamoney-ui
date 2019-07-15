@@ -117,8 +117,8 @@
 </div>
 
 <p-dialog header="Novo Contato" [(visible)]="exibindoFormularioContato"
-  modal="modal" (ngSubmit)="salvarContato()" *ngIf="exibindoFormularioContato">
-  <form #frmContato="ngForm">
+  modal="modal" *ngIf="contato">
+  <form #frmContato="ngForm" (ngSubmit)="confirmarContato(frmContato)">
     <div class="ui-g-12 ui-fluid">
       <label>Nome</label>
       <input pInputText type="text" name="nome"
@@ -134,7 +134,7 @@
     </div>
     <div class="ui-g-12 ui-fluid">
       <label>Telefone</label>
-      <p-inputMask type="text" name="telefone" mask="(99) 99999-999?9"
+      <p-inputMask name="telefone" mask="(99) 99999-999?9"
         [(ngModel)]="contato.telefone"></p-inputMask>
     </div>
 

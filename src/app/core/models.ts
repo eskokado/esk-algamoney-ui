@@ -13,7 +13,18 @@ export class Contato {
   nome: string;
   email: string;
   telefone: string;
-  contatos = new Array<Contato>();
+
+  constructor(
+    codigo?: number,
+    nome?: string,
+    email?: string,
+    telefone?: string
+  ) {
+    this.codigo = codigo;
+    this.nome = nome;
+    this.email = email;
+    this.telefone = telefone;
+  }
 }
 
 export class Pessoa {
@@ -21,6 +32,7 @@ export class Pessoa {
   nome: string;
   ativo = true;
   endereco = new Endereco();
+  contatos = new Array<Contato>();
 }
 
 export class Categoria {

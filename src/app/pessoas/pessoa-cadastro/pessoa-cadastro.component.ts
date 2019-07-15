@@ -1,3 +1,4 @@
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -42,6 +43,17 @@ export class PessoaCadastroComponent implements OnInit {
   prepararNovoContato() {
     this.exibindoFormularioContato = true;
     this.contato = new Contato();
+  }
+
+  confirmarContato(frm: FormControl) {
+    this.pessoa.contatos.push(this.clonarContato(this.contato));
+    this.exibindoFormularioContato = false;
+
+    frm.reset();
+  }
+
+  clonarContato(contato: Contato): Contato {
+    return new Contato(contato.codigo, contato.nome, contato.email, contato.telefone);
   }
 
   get editando() {
