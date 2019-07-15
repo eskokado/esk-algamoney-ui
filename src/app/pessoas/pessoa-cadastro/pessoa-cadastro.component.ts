@@ -7,7 +7,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService } from './../pessoa.service';
-import { Pessoa } from './../../core/models';
+import { Pessoa, Contato } from './../../core/models';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -18,6 +18,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   pessoa = new Pessoa();
   exibindoFormularioContato = false;
+  contato: Contato;
 
   constructor(
     private pessoaService: PessoaService,
@@ -40,6 +41,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   prepararNovoContato() {
     this.exibindoFormularioContato = true;
+    this.contato = new Contato();
   }
 
   get editando() {
