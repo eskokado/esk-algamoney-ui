@@ -17,6 +17,7 @@ import { LancamentoService } from '../lancamentos/lancamento.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { AuthService } from './../seguranca/auth.service';
+import { RelatoriosService } from './../relatorios/relatorios.service';
 
 import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
@@ -44,6 +45,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
     CategoriaService,
     AuthService,
     DashboardService,
+    RelatoriosService,
 
     Title,
 
