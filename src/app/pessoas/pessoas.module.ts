@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import { PanelModule } from 'primeng/panel';
 import { InputMaskModule } from 'primeng/inputmask';
 
 import { SharedModule } from './../shared/shared.module';
@@ -28,6 +28,7 @@ import { PessoasRoutingModule } from './pessoas-routing.module';
     TooltipModule,
     InputTextareaModule,
     InputMaskModule,
+    PanelModule,
 
     SharedModule,
 

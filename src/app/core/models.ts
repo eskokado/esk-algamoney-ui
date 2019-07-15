@@ -8,6 +8,14 @@ export class Endereco {
   estado: string;
 }
 
+export class Contato {
+  codigo: number;
+  nome: string;
+  email: string;
+  telefone: string;
+  contatos = new Array<Contato>();
+}
+
 export class Pessoa {
   codigo: number;
   nome: string;
