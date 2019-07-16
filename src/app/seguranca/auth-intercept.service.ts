@@ -18,10 +18,15 @@ export class AuthInterceptService implements HttpInterceptor {
     //Get Auth Token from Service which we want to pass thr service call
     const authToken: any = `Bearer ${localStorage.getItem('token')}`;
     // Clone the service request and alter original headers with auth token.
-    req = req.clone({
-      headers: req.headers.set('Content-Type', 'application/json').set('Authorization', authToken)
-    });
-//    req = req.clone({ setHeaders: { Authorization: authToken, 'Content-Type': 'application/json'} });
+    if (req.url.includes('/anexo')) {
+      req = req.clone({
+        headers: req.headers.set('Authorization', authToken)
+      });
+    } else {
+      req = req.clone({
+        headers: req.headers.set('Content-Type', 'application/json').set('Authorization', authToken)
+      });
+    }
 
     return next.handle(req).pipe(
       catchError(error => {
