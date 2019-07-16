@@ -52,7 +52,7 @@
         formControlName="observacao"></textarea>
       </div>
       <div class="ui-g-6 ui-g-offset-6 ui-md-2 ui-md-offset-10 ui-fluid"
-        *ngIf="!formulario.get('anexo').value">
+        *ngIf="editando && !formulario.get('anexo').value">
         <p-fileUpload name="anexo" mode="basic" auto="true" maxFileSize="10000000"
           chooseLabel="Anexar" accept="image/*,application/*"
           [url]="urlUploadAnexo" [hidden]="uploadEmAndamento"
@@ -63,8 +63,12 @@
           [style]="{ width: '25px', height: '25px' }"></p-progressSpinner>
 
       </div>
-      <div class="ui-g-12 ui-fluid" dir="rtl"
-      *ngIf="formulario.get('anexo').value">
+      <div class="ui-g-12" dir="rtl"
+        *ngIf="formulario.get('anexo').value">
+        <button pButton type="button" class="ui-button-danger"
+          icon="pi pi-times" pTooltip="Remover anexo" tooltipPosition="top"
+          (click)="removerAnexo()"></button>
+
         <a target="_blank" pTooltip="Baixar anexo" tooltipPosition="top"
           [href]="urlAnexo">
           {{ nomeAnexo }}
