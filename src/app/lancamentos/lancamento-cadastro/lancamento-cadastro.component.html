@@ -52,7 +52,7 @@
         formControlName="observacao"></textarea>
       </div>
       <div class="ui-g-6 ui-g-offset-6 ui-md-2 ui-md-offset-10 ui-fluid"
-        *ngIf="editando && !formulario.get('anexo').value">
+        *ngIf="!formulario.get('anexo').value">
         <p-fileUpload name="anexo" mode="basic" auto="true" maxFileSize="10000000"
           chooseLabel="Anexar" accept="image/*,application/*"
           [url]="urlUploadAnexo" [hidden]="uploadEmAndamento"
