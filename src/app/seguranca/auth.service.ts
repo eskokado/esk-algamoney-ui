@@ -22,7 +22,7 @@ export class AuthService {
 
   login(usuario: string, senha: string): Promise<void> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('angular:@ngul@r0'));
+    headers = headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMTdFc2tJdHcj');
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const body = `client=angular&username=${usuario}&password=${senha}&grant_type=password`;
@@ -43,7 +43,7 @@ export class AuthService {
 
   obterNovoAccessToken(): Promise<void> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa('angular:@ngul@r0'));
+    headers = headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMTdFc2tJdHcj');
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const body = 'grant_type=refresh_token';
