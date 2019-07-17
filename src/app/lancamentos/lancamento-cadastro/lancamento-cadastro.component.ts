@@ -4,13 +4,12 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { MessageService } from 'primeng/api';
 
 import { LancamentoService } from './../lancamento.service';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { Lancamento } from './../../core/models';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -34,7 +33,7 @@ export class LancamentoCadastroComponent implements OnInit {
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
-    private toastr: ToastrManager,
+    private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
     private router: Router,
@@ -73,7 +72,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   erroUpload(event) {
-    this.toastr.errorToastr('Erro ao tentar enviar anexo!');
+    this.messageService.add({ severity: 'error', detail: 'Erro ao tentar enviar anexo!' });
     this.uploadEmAndamento = false;
   }
 
@@ -170,7 +169,7 @@ export class LancamentoCadastroComponent implements OnInit {
 //  this.lancamentoService.adicionar(this.lancamento)
     this.lancamentoService.adicionar(this.formulario.value)
       .then((lancamento) => {
-        this.toastr.successToastr('Lançamento adicionado com sucesso!');
+        this.messageService.add({ severity: 'success', detail: 'Erro ao tentar enviar anexo!' });
         // form.reset();
         // this.lancamento = new Lancamento();
         this.router.navigate(['/lancamentos', lancamento.codigo]);
@@ -184,9 +183,9 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamentoService.atualizar(this.formulario.value)
       .then((lancamento) => {
         //this.lancamento = lancamento;
+        this.messageService.add({ severity: 'success', detail: 'Lançamento atualizado com sucesso!' });
         this.formulario.patchValue(lancamento);
         this.atualizarTituloEdicao();
-        this.toastr.successToastr('Lançamento atualizado com sucesso!');
       })
       .catch(erro => this.errorHandler.handle(erro));
   }

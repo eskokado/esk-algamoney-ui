@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { MessageService } from 'primeng/api';
 
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { PessoaService } from './../pessoa.service';
@@ -24,7 +24,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   constructor(
     private pessoaService: PessoaService,
-    private toastr: ToastrManager,
+    private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
     private router: Router,
@@ -90,7 +90,7 @@ export class PessoaCadastroComponent implements OnInit {
   adicionarPessoa(form: FormControl) {
     this.pessoaService.adicionar(this.pessoa)
       .then((pessoa) => {
-        this.toastr.successToastr('Pessoa adicionada com sucesso!');
+        this.messageService.add({ severity: 'success', detail: 'Pessoa adicionada com sucesso!' });
         //form.reset();
         //this.pessoa = new Pessoa();
         this.router.navigate(['/pessoas', pessoa.codigo]);
@@ -103,7 +103,7 @@ export class PessoaCadastroComponent implements OnInit {
       .then((pessoa) => {
         this.pessoa = pessoa;
         this.atualizarTituloEdicao();
-        this.toastr.successToastr('Pessoa atualizada com sucesso!');
+        this.messageService.add({ severity: 'success', detail: 'Pessoa atualizada com sucesso!' });
       })
       .catch(erro => this.errorHandler.handle(erro));
   }

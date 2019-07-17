@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse,  } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { ToastrManager } from 'ng6-toastr-notifications';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class ErrorHandlerService {
 
   constructor(
-    private toastr: ToastrManager,
+    private messageService: MessageService,
     private router: Router
   ) { }
 
@@ -55,6 +55,6 @@ export class ErrorHandlerService {
 //      console.log('Ocorreu um erro.', errorResponse)
     }
 
-    this.toastr.errorToastr(msg);
+    this.messageService.add({ severity: 'error', detail: msg });
   }
 }

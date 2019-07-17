@@ -3,9 +3,9 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
-import { ToastrModule  } from 'ng6-toastr-notifications';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,7 +26,8 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
     CommonModule,
     RouterModule,
 
-    ToastrModule.forRoot(),
+    ToastModule,
+
     ConfirmDialogModule,
   ],
   declarations: [
@@ -37,7 +38,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
   exports: [
     NavbarComponent,
     ConfirmDialogModule,
-    ToastrModule
+    ToastModule
   ],
   providers: [
     LancamentoService,
@@ -52,6 +53,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
     JwtHelperService,
     ErrorHandlerService,
     ConfirmationService,
+    MessageService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })

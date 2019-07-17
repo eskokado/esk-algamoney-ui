@@ -1,6 +1,8 @@
 <app-navbar *ngIf="exibindoNavBar()"></app-navbar>
 <router-outlet></router-outlet>
 
+<p-toast></p-toast>
+
 <p-confirmDialog #cd header="Confirmação" icon="pi pi-exclamation-triangle">
   <p-footer>
     <button type="button" pButton icon="pi pi-times" label="Não" (click)="cd.reject()"></button>
