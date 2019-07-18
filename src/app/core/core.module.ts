@@ -2,6 +2,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -24,6 +25,7 @@ import { NaoAutorizadoComponent } from './nao-autorizado.component';
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule,
 
     ToastModule,

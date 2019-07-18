@@ -15,8 +15,14 @@ export class AuthInterceptService implements HttpInterceptor {
     if (req.url.includes('/oauth/token')) {
       return next.handle(req);
     }
+    if (this.authService.isAccessTokenInvalido()) {
+      console.log('Requisição HTTP com access token inválido. Obtendo novo token...');
+      this.authService.obterNovoAccessToken();
+    }
+
     //Get Auth Token from Service which we want to pass thr service call
     const authToken: any = `Bearer ${localStorage.getItem('token')}`;
+
     // Clone the service request and alter original headers with auth token.
     if (req.url.includes('/anexo')) {
       req = req.clone({
